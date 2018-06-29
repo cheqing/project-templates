@@ -1,0 +1,29 @@
+#服务端口
+server:
+   prot: 8080
+   
+#数据库配置
+spring:
+   datasource:
+   #数据库配置
+      name: test
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+   #连接池配置
+      initialSize: 10
+      minIdle: 10
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      

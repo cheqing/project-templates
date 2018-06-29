@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>cn.leecn</groupId>
+  <artifactId>project-temp-ssm</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <name>project-temp-ssm</name>
+  
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <java.version>1.8</java.version>
+  </properties>
+  
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.0.2.RELEASE</version>
+      <!-- <relativePath/> --> <!-- lookup parent from repository -->
+  </parent>
+  
+  <dependencies>
+  	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<dependency>
+	     <groupId>org.springframework.boot</groupId>
+	     <artifactId>spring-boot-starter-test</artifactId>
+	     <scope>test</scope>
+	 </dependency>
+	
+	<!-- 阿里巴巴连接池 -->
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>druid</artifactId>
+	    <version>1.1.9</version>
+	</dependency>
+	
+	<!-- mysql -->
+	<dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    
+    <!-- 常用工具类，课作为JDK的补充 -->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	</dependency>
+	
+	<!-- 阿里巴巴 fastjson工具 -->
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>fastjson</artifactId>
+	    <version>1.2.47</version>
+	</dependency>
+	
+	<!-- 分页插件 -->
+    <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>1.2.5</version>
+    </dependency>
+		
+    <!-- mybatis -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>3.4.6</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+  <!-- 这里不做配置也没有问题，因为springboot2.0的parent已经默认了1.8版本的jdk -->
+  	<plugins>
+	    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<configuration>
+		    <source>1.8</source>	<!-- 源代码使用的开发版本 -->
+		    <target>1.8</target>	<!-- 需要生成的目标class文件的编译版本 -->
+		    <!-- 一般而言，target与source是保持一致的，但是，有时候为了让程序能在其他版本的jdk中运行(对于低版本目标jdk，源代码中需要没有使用低版本jdk中不支持的语法)，会存在target不同于source的情况 -->
+		    <encoding>UTF-8</encoding>  <!-- 编译是的字符编码 -->
+		</configuration>
+	    </plugin> 
+	    
+	    <!-- spring boot热部署插件 
+	    	如果让热部署能够实现，不能直接运行main方法启动，需要使用：mvn spring-boot:run启动
+	    -->
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework</groupId>
+					<artifactId>springloaded</artifactId>
+					<version>1.2.8.RELEASE</version>
+				</dependency>
+			</dependencies>
+		</plugin>
+		
+		<!-- 打包时忽略test测试 -->
+		<plugin>  
+		    <groupId>org.apache.maven.plugins</groupId>  
+		    <artifactId>maven-surefire-plugin</artifactId>  
+		    <configuration>  
+		      <skipTests>true</skipTests>  
+		    </configuration>  
+		</plugin>
+	</plugins>
+	  	
+  </build>
+</project>
